@@ -2,7 +2,10 @@
 
 Verantwortlicher Ansprechpartner für diese Webseite ist:
 <address>
-<em>tba</em>
+<em>Immopoly Team - YIN Lab </em>
+Yan Minagawa
+Andreasstr. 10
+10243 Berlin
 </address>
 
 <h2>Credits</h2>
