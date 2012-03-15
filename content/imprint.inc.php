@@ -16,14 +16,6 @@ Andreasstr. 10<br/>
 <div class="row">
 	
 	<div class="span4">
-
-		<h3>Titelbild</h3>
-		<p>Das Titelbild der Startseite haben wir dem Flickr-User <a href="http://www.flickr.com/photos/giesenbauer/" title="Flickr-Profil">Bjørn Giesenbauer</a> zu verdanken. Hier gibt es das Bild:
-		</p>
-		<p><a href="http://www.flickr.com/photos/giesenbauer/3458525781/" title="Bilddownload auf Flickr" class="btn">Zur Flickr-Galerie &raquo;</a></p>
-
-	</div>
-	<div class="span4">
 		<h3>Bootstrap</h3>
 
 		<p>Diese Website ist auf Basis des Frameworks Bootstrap 2.0 entstanden, welches von Twitter erstellt und veröffentlicht wurde.
