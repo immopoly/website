@@ -16,11 +16,13 @@
  		"screenshots" => "Screenshots",
  		"download" => "Download",
  		"livestats" => "Live-Status",
- 		"helpandroid" => "Android-Hilfe"
+ 		"helpandroid" => "Android-Hilfe",
+ 		"is24-counter" => "IS24-Spieleranzahl"
  	);
 
  	$framelessPages = array(
- 		'helpandroid'
+ 		'helpandroid',
+ 		'is24-counter'
  	);
 
 ?>
