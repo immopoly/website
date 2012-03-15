@@ -26,7 +26,9 @@ function validatePageCall($page){
 
 	if(substr($page, 0,10) == "frameless-"){
 		$page = substr($page,10);
-	}
+	}else if(substr($page, 0,6) == "plain-"){
+		$page = substr($page,6);
+	}	
 
 	if( is_readable(the_filename($page))){
 		return $page;
@@ -160,9 +162,14 @@ function getGermanDate($timestamp,$showTime=false) {
 	
 }
 
-function isFrameless($page){
-
+function isFrameless(){
 	return ! empty($_GET['frameless']);
 }
+
+
+function isPlain(){
+	return ! empty($_GET['plain']);
+}
+
 
 ?>

@@ -7,7 +7,13 @@
   require_once('inc/main.inc.php');  
 
   $page=validateStartParams();
-  $isFrameless = isFrameless($page);
+  
+  if(isPlain()){
+      the_page($page);    
+      exit;
+  }
+
+  $isFrameless = isFrameless();
 
 ?>
 <!DOCTYPE html>
@@ -178,6 +184,9 @@
       <script type="text/javascript">
         //do on start
         $(document).ready(function() {
+          $.get("/plain-toplist.html",function(data) {
+            $('#toplist_wrapper').html(data);
+          });
           updateTable("#top_makler","top", 0, 20);
           updateTable("#history_list","history");
           initHeatmap();          
