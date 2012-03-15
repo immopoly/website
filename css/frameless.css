@@ -40,8 +40,12 @@
 		float: left;
 	}
 
+	.span6 table{
+		width: 100%;
+	}
+
 /* 
- *	is24-counter
+ *	page: is24-counter
  */ 
 
 body.is24-counter, 
@@ -63,3 +67,12 @@ body.is24-counter pre {
   color: #444;
 }
 
+
+/* 
+ *	page: toplist
+ */ 
+
+body.toplist{
+	background-color: white;
+	color: #333;	
+}
