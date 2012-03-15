@@ -38,12 +38,16 @@
   			//load static files instead of connecting to the live server
   			url = "/"+callType+".json";
   		}else{
-  			url = "ajaxproxy.php?mode=native&url="+escape("http://immopoly.appspot.com/user/"+callType+"?start="+startVal+"&end="+endVal);
+
+        targetURL = "http://immopoly.appspot.com/user/"+callType+"?start="+startVal+"&end="+endVal;
+
+        if(callType=="topx"){
+          targetURL +="&ranktype=balanceReleaseBadge";
+        }
+
+  			url = "ajaxproxy.php?mode=native&url="+escape(targetURL);
   		}
   
-      if(! localmode && callType=="topx"){
-        url +="&ranktype=balanceReleaseBadge";
-      }
 
   		//alert("Loading data from '"+url+"'");
   		
@@ -306,7 +310,7 @@
   
       //request immopoly
       $.ajax({
-        url: "http://immopoly.org/ajaxproxy.php?mode=native&url="+escape("http://immopoly.appspot.com/statistic/heatmap?type=takeover"),
+        url: "http://immopoly.org/ajaxproxy.php?mode=native&url="+escape("http://immopoly.appspot.com/statistic/heatmap?"),
         context: document.body,
         data:{'type':'takeover'},
         dataType:"json",
