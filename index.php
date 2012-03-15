@@ -27,6 +27,7 @@
         padding-bottom: 40px;
       }     
     </style>
+    <link href="bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
 
 <?php if($isFrameless): ?>
     <link href="css/frameless.css" rel="stylesheet">    
@@ -37,7 +38,6 @@
     <![endif]-->
 
     <!-- Le styles -->
-    <link href="bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
     <link href="css/overrides.css" rel="stylesheet">
 
     <!-- Le fav and touch icons -->
