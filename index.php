@@ -184,7 +184,7 @@
       <script type="text/javascript">
         //do on start
         $(document).ready(function() {
-          updateTable("#top_makler","topx", 0, 30);
+          updateTable("#top_makler","topx", 0, 15);
           updateTable("#history_list","history");
           initHeatmap();          
         });
