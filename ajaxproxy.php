@@ -229,19 +229,19 @@ if ( !$url ) {
   
   // Passed url not specified.
   $contents = 'ERROR: url not specified';
-  $status = array( 'http_code' => 'ERROR' );
+  $status = array( 'http_code' => 400 );
   
 } else if ( !preg_match( $valid_url_regex, $url ) ) {
   
   // Passed url doesn't match $valid_url_regex.
   $contents = 'ERROR: invalid url';
-  $status = array( 'http_code' => 'ERROR' );
+  $status = array( 'http_code' => 400 );
   
 }elseif (   is_array($WHITELIST_DOMAINS) && ! empty($WHITELIST_DOMAINS) && 
             ! in_array( parse_url($url,PHP_URL_HOST), $WHITELIST_DOMAINS) ) {
 
   $contents = 'ERROR: invalid url "'.parse_url($url,PHP_URL_HOST).'" is not in whitelist [full url="'.$url.'"]';
-  $status = array( 'http_code' => 'ERROR' );
+  $status = array( 'http_code' => 403 );
   
 } else {
 
@@ -296,7 +296,7 @@ $header_text = preg_split( '/[\r\n]+/', $header );
 if ( $_GET['mode'] == 'native' ) {
   if ( !$enable_native ) {
     $contents = 'ERROR: invalid mode';
-    $status = array( 'http_code' => 'ERROR' );
+    $status = array( 'http_code' => 403 );
   }
   
   // Propagate headers to response.
@@ -304,6 +304,10 @@ if ( $_GET['mode'] == 'native' ) {
     if ( preg_match( '/^(?:Content-Type|Content-Language|Set-Cookie):/i', $header ) ) {
       header( $header );
     }
+  }
+
+  if( ! empty($status['http_code'])){
+    http_response_code($status['http_code']);
   }
   
   print $contents;
