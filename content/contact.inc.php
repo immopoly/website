@@ -1,6 +1,6 @@
 <h1>Kontakt</h1>
 <p>Du kannst das Team von Immopoly über folgende Mailadresse erreichen: 
-	<a href="mailto:immopolyteam@googlemail.com" class="btn btn-small " title"Mail an uns...">
+	<a href="mailto:immopolyteam@googlemail.com?subject=Feedback%20via%20Website" class="btn btn-small " title"Mail an uns...">
 		<i class="icon-envelope"></i>
 		immopolyteam@googlemail.com
 	</a>
