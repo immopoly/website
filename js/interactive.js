@@ -41,7 +41,7 @@
   			url = "ajaxproxy.php?mode=native&url="+escape("http://immopoly.appspot.com/user/"+callType+"?start="+startVal+"&end="+endVal);
   		}
   
-      if(! localmode && mode=="topx"){
+      if(! localmode && callType=="topx"){
         url +="&ranktype=balanceReleaseBadge";
       }
 
