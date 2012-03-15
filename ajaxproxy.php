@@ -240,7 +240,7 @@ if ( !$url ) {
 }elseif (   is_array($WHITELIST_DOMAINS) && ! empty($WHITELIST_DOMAINS) && 
             ! in_array( parse_url($url,PHP_URL_HOST), $WHITELIST_DOMAINS) ) {
 
-  $contents = 'ERROR: invalid url (not in whitelist)';
+  $contents = 'ERROR: invalid url "'.parse_url($url,PHP_URL_HOST).'" is not in whitelist)';
   $status = array( 'http_code' => 'ERROR' );
   
 } else {
