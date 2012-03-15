@@ -184,10 +184,7 @@
       <script type="text/javascript">
         //do on start
         $(document).ready(function() {
-          $.get("/plain-toplist.html",function(data) {
-            $('#toplist_wrapper').html(data);
-          });
-          updateTable("#top_makler","top", 0, 20);
+          updateTable("#top_makler","topx", 0, 30);
           updateTable("#history_list","history");
           initHeatmap();          
         });

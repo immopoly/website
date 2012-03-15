@@ -40,7 +40,11 @@
   		}else{
   			url = "ajaxproxy.php?mode=native&url="+escape("http://immopoly.appspot.com/user/"+callType+"?start="+startVal+"&end="+endVal);
   		}
-  		
+  
+      if(! localmode && mode=="topx"){
+        url +="&ranktype=balanceReleaseBadge";
+      }
+
   		//alert("Loading data from '"+url+"'");
   		
   		$.getJSON(url, function(jsonData){
@@ -90,7 +94,7 @@
   			}
 
         //reassign rank numbers
-        if(callType == "top"){
+        if(callType == "topx"){
           
           var rank = 1;
 
@@ -119,7 +123,7 @@
 		var entryData = new Array();
 		
 		switch (callType) {
-		case "top":
+		case "topx":
 			
 			user = jsonData["org.immopoly.common.User"];
 			
