@@ -310,9 +310,12 @@
   
       //request immopoly
       $.ajax({
-        url: "http://immopoly.org/ajaxproxy.php?mode=native&url="+escape("http://immopoly.appspot.com/statistic/heatmap?"),
+        url: "http://immopoly.org/ajaxproxy.php",
         context: document.body,
-        data:{'type':'takeover'},
+        data:{
+            'mode':'native',
+            'url' : escape("http://immopoly.appspot.com/statistic/heatmap?type=takeover")
+        },
         dataType:"json",
           success: function(data){
             logger('login response '+JSON.stringify(data) );
