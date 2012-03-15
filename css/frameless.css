@@ -1,0 +1,65 @@
+/* 
+ *	general page layout for frameless views 
+*/ 
+	body{
+		background-color: black; 
+		color: #DDD;
+		padding: 10px;
+	}
+
+	body h2, 
+	body h2 a{
+		color: #ff7500;
+		clear: both;
+	}
+
+	body ul {
+		padding: 0;
+		margin: 0;
+	}
+
+	body li {
+		list-style-type: none;
+	}
+
+	body li img {
+		vertical-align: middle;
+		height: 40px;
+	}
+
+	body li span {
+		vertical-align: middle;
+		font-weight: bold;
+	}		
+
+	body li a.btn {
+		width: 120px;
+		text-align: left;
+		margin-bottom: 10px;
+		margin-right: 10px;
+		float: left;
+	}
+
+/* 
+ *	is24-counter
+ */ 
+
+body.is24-counter, 
+body.is24-counter pre {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  
+  background-color: transparent;
+}
+body.is24-counterbody {
+  width: 75px;
+}
+body.is24-counter pre {
+  font: 1.75em/1 Tahoma, Geneva, Kalimati, sans-serif;
+  color: #444;
+}
+

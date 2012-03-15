@@ -8,9 +8,4 @@
 		"pagefileSuffix" => ".inc.php"
 		);
 
- 	$framelessPages = array(
- 		'helpandroid',
- 		'is24-counter'
- 	);
-
 ?>

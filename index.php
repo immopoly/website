@@ -7,6 +7,7 @@
   require_once('inc/main.inc.php');  
 
   $page=validateStartParams();
+  $isFrameless = isFrameless($page);
 
 ?>
 <!DOCTYPE html>
@@ -19,12 +20,6 @@
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-
-    <!-- Le styles -->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <style type="text/css">
       body {
@@ -32,6 +27,16 @@
         padding-bottom: 40px;
       }     
     </style>
+
+<?php if($isFrameless): ?>
+    <link href="css/frameless.css" rel="stylesheet">    
+<?php else: ?>
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
     <link href="bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
     <link href="css/overrides.css" rel="stylesheet">
 
@@ -52,6 +57,8 @@
     s.parentNode.insertBefore(po, s);
     })();</script>
 
+<?php endif; //FRAMELESS ?>
+
 	<script type="text/javascript">
 
 	  var _gaq = _gaq || [];
@@ -67,13 +74,19 @@
 	</script>
 
   </head>
-  <body>
-    <?php 
-      if( isFrameless($page)){
+  <body class="<?php echo $page;?>">
+  <?php if($isFrameless): ?>
+        <!-- Le javascript
+        ================================================== -->
+        <!-- Placed before the document to have allow extended functions called in the frameless view -->
+        <script type="text/javascript" src="js/jquery-1.7.min.js"></script>
+        <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+
+        <?php
+        //reduced output for frameless view
         the_page($page);
-        exit;
-      }
-    ?>
+        
+        else: ?>
 
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
@@ -127,9 +140,10 @@
     </div>
 
     <div class="container">
-
+      <div class="contentholder">
       <!-- CONTENT HERE -->
       <?php the_page($page); ?>
+      </div>
       <hr>
 
       <footer>
@@ -188,5 +202,8 @@
         $(".navbar .nav li.<?php echo $page;?>").addClass("active");
       });
     </script>
+
+<?php endif; //FRAMELESS ?>
+
   </body>
 </html>

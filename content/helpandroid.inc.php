@@ -1,43 +1,3 @@
-<style type="text/css">
-	body{
-		background-color: black; 
-		color: #DDD;
-		padding: 10px;
-	}
-
-	h2, h2 a{
-		color: #ff7500;
-		clear: both;
-	}
-
-	ul {
-		padding: 0;
-		margin: 0;
-	}
-
-	li {
-		list-style-type: none;
-	}
-
-	li img {
-		vertical-align: middle;
-		height: 40px;
-	}
-
-	li span {
-		vertical-align: middle;
-		font-weight: bold;
-	}		
-
-	li a.btn {
-		width: 120px;
-		text-align: left;
-		margin-bottom: 10px;
-		margin-right: 10px;
-		float: left;
-	}
-	
-</style>
 <script type="text/javascript">
 	// anchors ala href="#map" klappen nur einmal, wenn man zurückscrollt und nochmal 
 	// den selben link klickt passiert nüscht - deshalb so:
@@ -46,6 +6,7 @@
 		document.location.hash = anchor;
 	}
 </script>
+
 
 	<h2>Hauptnavigation</h2>
 	<p>In der obersten Zeile der App findest Du folgende Symbole. Klicke auf eines, um mehr über dessen Funktion zu erfahren.</p>
