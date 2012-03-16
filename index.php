@@ -82,14 +82,6 @@
   </head>
   <body class="<?php echo $page;?>">
   <?php if($isFrameless): ?>
-	  <div id="fb-root"></div>
-	<script>(function(d, s, id) {
-	  var js, fjs = d.getElementsByTagName(s)[0];
-	  if (d.getElementById(id)) return;
-	  js = d.createElement(s); js.id = id;
-	  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=187696841334350";
-	  fjs.parentNode.insertBefore(js, fjs);
-	}(document, 'script', 'facebook-jssdk'));</script>
         <!-- Le javascript
         ================================================== -->
         <!-- Placed before the document to have allow extended functions called in the frameless view -->
