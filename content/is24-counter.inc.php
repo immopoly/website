@@ -34,10 +34,8 @@ function getCounterInfo() {
 function getNumberOfPlayers(){
 
     if(cachefile_exits(COUNTER_URL) && ! cachefile_is_too_old(COUNTER_URL) ){
-        header("X-Debug: From cache=yes");
         $counter = json_decode(cachefile_read(COUNTER_URL));
     }else{
-        header("X-Debug: From cache=no");
         $counter = getCounterInfo();
     }
 
