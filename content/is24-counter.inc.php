@@ -3,21 +3,47 @@
 * DIRTY HACKING IS DIRTY
 */
 
+error_reporting(E_ALL);
+
+define('COUNTER_URL',"http://immopoly.appspot.com/user/counter");
+
+//how long after a cache will be renewed
+define("CACHE_TTL",900);//15 mins
+define("CACHE_DIR",'.cache');
+require_once("inc/cache.inc.php");
+
 function getCounterInfo() {
     // {"Counter":{"badgeOneOfTheFirst":441,"date":1331821613933,"exposesRented":238,"user":667}}
-    $url = "http://immopoly.appspot.com/user/counter"; 
-    $ch = curl_init($url);
+     
+    $ch = curl_init(COUNTER_URL);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_BINARYTRANSFER, true);
     $output = curl_exec($ch);
+
+    if(curl_errno($ch)){
+        return null;
+    }else{
+        cachefile_write(COUNTER_URL,$output);
+    }
+
     curl_close($ch);
 
     return json_decode($output,true);
 }
 
 function getNumberOfPlayers(){
-  $counter = getCounterInfo();	
-  return $counter["Counter"]["badgeOneOfTheFirst"];
+
+    if(cachefile_exits(COUNTER_URL) && ! cachefile_is_too_old(COUNTER_URL) ){
+        $counter = json_decode(cachefile_read(COUNTER_URL));
+    }else{
+        $counter = getCounterInfo();
+    }
+
+    if( is_object($counter)){
+        return $counter->Counter->badgeOneOfTheFirst;
+    }
+
+    return $counter["Counter"]["badgeOneOfTheFirst"];
 }
 ?>
 
