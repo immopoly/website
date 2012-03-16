@@ -134,7 +134,7 @@
 			entryData.push( "" );
 			entryData.push( user.username );
 			entryData.push( formatMoney(user.info.balance) );
-			entryData.push( formatMoney(user.info.balanceMonth) );
+			//entryData.push( formatMoney(user.info.balanceMonth) );
 						
 			break;
 		case "history":

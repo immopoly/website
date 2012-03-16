@@ -11,14 +11,18 @@
 					 <col class="rank"></col>
 					 <col class="name"></col>
 					 <col class="balance"></col>
+					 <!--
 					 <col class="balanceMonth"></col>
+					-->
 			 </colgroup> 
 			 <thead> 
 					 <tr> 
 							 <th>Platz</th> 
 							 <th>Name</th> 
 							 <th>Kontostand</th>
+							 <!--
 							 <th>monatl. Umsatz</th>
+							-->
 					 </tr>
 			 </thead>
 			 <tbody>
