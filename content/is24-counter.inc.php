@@ -59,7 +59,7 @@ function getNumberOfFreeSeats() {
     if(is_int($playerz)){
       return $seats-$playerz;
     }
-    return $seats;
+    return $playerz;
 }
 
 ?>
