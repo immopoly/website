@@ -57,7 +57,7 @@ function getNumberOfFreeSeats() {
     // as we want to know how many seats availible
     $playerz = getNumberOfPlayers();
     if(is_int($playerz)){
-      return $seats-$playerz
+      return $seats-$playerz;
     }
     return $seats;
 }
@@ -65,5 +65,5 @@ function getNumberOfFreeSeats() {
 ?>
 
 <pre>
-<? echo getNumberOfPlayers(); ?>
+<? echo getNumberOfFreeSeats(); ?>
 </pre>
