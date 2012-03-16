@@ -291,6 +291,11 @@ function logline($message=null){
 
 $url = $_GET['url'];
 
+//decode url if neccessary
+if( $url && empty(parse_url($url,PHP_URL_HOST)) ){
+  $url = rawurldecode($url);
+}
+
 if ( !$url ) {
   
   // Passed url not specified.
