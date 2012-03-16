@@ -503,10 +503,6 @@ HeatmapOverlay.prototype.draw = function(){
 
 HeatmapOverlay.prototype.pixelTransform = function(p){
     
-    if(this.heatmap == null){
-        this.heatmap = this.get("heatmap");
-    }
-
     var w = this.heatmap.get("width"),
         h = this.heatmap.get("height");
 
@@ -542,7 +538,7 @@ HeatmapOverlay.prototype.setDataSet = function(data){
         dlen = d.length,
         projection = this.getProjection();
 
-    if( typeof projection == "undefined"){
+    if( typeof projection == "undefined" || this.heatmap == null){
         initHeatmap();
         return false;
     }    
