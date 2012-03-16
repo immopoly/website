@@ -539,6 +539,8 @@ HeatmapOverlay.prototype.setDataSet = function(data){
 
     this.latlngs = [];
    
+    console.log(d);
+
     while(dlen--){  
         var latlng = new google.maps.LatLng(d[dlen].lat, d[dlen].lng);
         this.latlngs.push({latlng: latlng, c: d[dlen].count});
