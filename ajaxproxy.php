@@ -217,77 +217,12 @@ $WHITELIST_DOMAINS = array('immopoly.appspot.com');
  */
 $enable_caching = true;
 //how long after a cache will be renewed
-define(CACHE_TTL,300);//5 mins
-define(CACHE_DIR,'.cache');
+define("CACHE_TTL",300);//5 mins
+define("CACHE_DIR",'.cache');
 
-// ############################################################################
-//  FUNCTIONS
-// ############################################################################
-
-/**
- * checks or creates the cache dir 
- */
-function prepare_cache(){
-  return is_writable(CACHE_DIR) || mkdir(CACHE_DIR,0777,true);
+if($enable_caching){
+  require_once("inc/cache.inc.php");
 }
-
-/**
- * generates a cachefile name for a given url
- */
-function get_cachefile_name($url){
-  return CACHE_DIR.'/'.sha1($url);
-}
-
-/**
- * checks if a cache file exists and is not expired for a given url
- */
-function cachefile_exits($url){
-
-  if(! prepare_cache()){
-    return false;
-  }
-
-  return is_readable(  get_cachefile_name($url) ) && ! cachefile_is_too_old($url);
-}
-
-/**
- * returns if the modification time is older than the cache-time
- */
-function cachefile_is_too_old($url){
-    return ( time() - filemtime( get_cachefile_name($url) )) >= CACHE_TTL;
-}
-
-/**
- * checks if a cache file exists for a given url
- */
-function cachefile_read($url){
-
-  if(! prepare_cache()){
-    return false;
-  }
-
-  return file_get_contents( get_cachefile_name($url) );
-}
-
-function cachefile_write($url, $content){
-
-  if(! prepare_cache()){
-    return false;
-  }
-
-  return file_put_contents( get_cachefile_name($url), $content);
-}
-
-function logline($message=null){
-
-    static $logfile = "log.txt";
-
-    exec("echo \"".date(DATE_RFC2822)." :".$message."\" >> ".$logfile);
-}
-
-
-// ############################################################################
-
 
 $url = $_GET['url'];
 
@@ -330,7 +265,7 @@ if ( !$url ) {
       curl_setopt( $ch, CURLOPT_POSTFIELDS, $_POST );
     }
     
-    if ( $_GET['send_cookies'] ) {
+    if ( ! empty($_GET['send_cookies']) ) {
       $cookie = array();
       foreach ( $_COOKIE as $key => $value ) {
         $cookie[] = $key . '=' . $value;
@@ -347,7 +282,7 @@ if ( !$url ) {
     curl_setopt( $ch, CURLOPT_HEADER, true );
     curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
     
-    curl_setopt( $ch, CURLOPT_USERAGENT, $_GET['user_agent'] ? $_GET['user_agent'] : $_SERVER['HTTP_USER_AGENT'] );
+    curl_setopt( $ch, CURLOPT_USERAGENT, !empty($_GET['user_agent']) ? $_GET['user_agent'] : $_SERVER['HTTP_USER_AGENT'] );
     
     list( $header, $contents ) = preg_split( '/([\r\n][\r\n])\\1/', curl_exec( $ch ), 2 );
     
