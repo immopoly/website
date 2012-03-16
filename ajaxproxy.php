@@ -216,12 +216,13 @@ $WHITELIST_DOMAINS = array('immopoly.appspot.com');
  * CACHING
  */
 $enable_caching = true;
-//how long after a cache will be renewed
-define("CACHE_TTL",300);//5 mins
-define("CACHE_DIR",'.cache');
 
 if($enable_caching){
+  //how long after a cache will be renewed
+  define("CACHE_TTL",300);//5 mins
+  define("CACHE_DIR",'.cache');
   require_once("inc/cache.inc.php");
+  prepare_cache();
 }
 
 $url = $_GET['url'];
