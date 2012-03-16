@@ -546,6 +546,7 @@ HeatmapOverlay.prototype.setDataSet = function(data){
    
     while(dlen--){  
         var latlng = new google.maps.LatLng(d[dlen].lat, d[dlen].lng);
+        console.log(latlng);
         this.latlngs.push({latlng: latlng, c: d[dlen].count});
         var point = this.pixelTransform(projection.fromLatLngToDivPixel(latlng));
         mapdata.data.push({x: point.x, y: point.y, count: d[dlen].count});
