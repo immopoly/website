@@ -280,7 +280,10 @@ if ( !$url ) {
     
     list( $header, $contents ) = preg_split( '/([\r\n][\r\n])\\1/', curl_exec( $ch ), 2 );
     
-    if(! curl_errno($ch) && strtolower($_SERVER['REQUEST_METHOD']) == 'get' && $enable_caching){
+    if(curl_errno($ch)){
+      $status = array('http_code', curl_getinfo($ch,CURLINFO_HTTP_CODE) );
+      $contents = curl_error($ch);
+    }else if( strtolower($_SERVER['REQUEST_METHOD']) == 'get' && $enable_caching){
       cachefile_write($url,$contents);  
     }
     curl_close( $ch );    
