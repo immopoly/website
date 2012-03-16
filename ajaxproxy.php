@@ -376,6 +376,7 @@ if ( $_GET['mode'] == 'native' ) {
   }
 
   if( ! empty($status['http_code'])){
+    echo $status['http_code'];
     http_response_code($status['http_code']);
   }
   
