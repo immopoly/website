@@ -34,16 +34,26 @@ function getCounterInfo() {
 function getNumberOfPlayers(){
 
     if(cachefile_exits(COUNTER_URL) && ! cachefile_is_too_old(COUNTER_URL) ){
+        header("X-Debug: From cache=yes");
         $counter = json_decode(cachefile_read(COUNTER_URL));
     }else{
+        header("X-Debug: From cache=no");
         $counter = getCounterInfo();
     }
 
-    if( is_object($counter)){
-        return $counter->Counter->badgeOneOfTheFirst;
+    $result = "???";
+
+    if(is_object($counter)){
+        $result = $counter->Counter->badgeOneOfTheFirst;
+    }else if(is_array($counter)){
+        $result = $counter["Counter"]["badgeOneOfTheFirst"];
     }
 
-    return $counter["Counter"]["badgeOneOfTheFirst"];
+    if(empty($result) || ! is_int($result) ){
+        return "?.???";
+    }
+
+    return number_format($result,0,",",".");
 }
 ?>
 
