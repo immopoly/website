@@ -55,7 +55,7 @@ function getNumberOfPlayers(){
 function getNumberOfFreeSeats() {
     $seats = 2000;
     // as we want to know how many seats availible
-    $playerz = getNumberOfPlayers();
+    $playerz = (int)getNumberOfPlayers();
     if(is_int($playerz)){
       return $seats-$playerz;
     }
