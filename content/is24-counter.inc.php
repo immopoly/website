@@ -50,7 +50,8 @@ function getNumberOfPlayers(){
     if(empty($result) || ! is_int($result) ){
         return "?.???";
     }
-
+    // as we want to know how many seats availible
+    $result = 2000-$result;
     return number_format($result,0,",",".");
 }
 ?>
