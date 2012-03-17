@@ -12,11 +12,16 @@ Some words explaining the structure should help you to put stuff where they belo
 
  * **content/**
 
-	PHP-files for inner content of subpages. One File per Subpage. (Has to be configured in `config.inc.php` to be callable)
+	PHP-files for inner content of subpages. One File per Subpage.
 
  * **css/overrides.css**
 
 	styles overriding default behavior of Bootstrap
+
+
+ * **css/frameless.css**
+
+	styles overriding default behavior of Bootstrap used for frameless-mode
 
  * **img/layout/**
 
@@ -28,7 +33,7 @@ Some words explaining the structure should help you to put stuff where they belo
 
  * **inc/config.inc.php**
 
-	configuration file. Most important `$pageNames` for allowing access to these subpages (must exist as `content/*.inc.php`, too)
+	configuration file.
 
  * **inc/main.inc.php**
 

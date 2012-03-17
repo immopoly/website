@@ -8,19 +8,4 @@
 		"pagefileSuffix" => ".inc.php"
 		);
 
-	$pageNames=array(	
-		"home" => "Home",
- 		"contact" => "Kontakt",
- 		"imprint" => "Impressum",
- 		"description" => "Beschreibung",
- 		"screenshots" => "Screenshots",
- 		"download" => "Download",
- 		"livestats" => "Live-Status",
- 		"helpandroid" => "Android-Hilfe"
- 	);
-
- 	$framelessPages = array(
- 		'helpandroid'
- 	);
-
 ?>

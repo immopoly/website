@@ -38,9 +38,17 @@
   			//load static files instead of connecting to the live server
   			url = "/"+callType+".json";
   		}else{
-  			url = "ajaxproxy.php?mode=native&url="+escape("http://immopoly.appspot.com/user/"+callType+"?start="+startVal+"&end="+endVal);
+
+        targetURL = "http://immopoly.appspot.com/user/"+callType+"?start="+startVal+"&end="+endVal;
+
+        if(callType=="topx"){
+          targetURL +="&ranktype=balanceReleaseBadge";
+        }
+
+  			url = "ajaxproxy.php?mode=native&url="+escape(targetURL);
   		}
-  		
+  
+
   		//alert("Loading data from '"+url+"'");
   		
   		$.getJSON(url, function(jsonData){
@@ -90,7 +98,7 @@
   			}
 
         //reassign rank numbers
-        if(callType == "top"){
+        if(callType == "topx"){
           
           var rank = 1;
 
@@ -119,14 +127,14 @@
 		var entryData = new Array();
 		
 		switch (callType) {
-		case "top":
+		case "topx":
 			
 			user = jsonData["org.immopoly.common.User"];
 			
 			entryData.push( "" );
 			entryData.push( user.username );
 			entryData.push( formatMoney(user.info.balance) );
-			entryData.push( formatMoney(user.info.balanceMonth) );
+			//entryData.push( formatMoney(user.info.balanceMonth) );
 						
 			break;
 		case "history":
@@ -302,9 +310,12 @@
   
       //request immopoly
       $.ajax({
-        url: "http://immopoly.org/ajaxproxy.php?mode=native&url="+escape("http://immopoly.appspot.com/statistic/heatmap?type=takeover"),
+        url: "http://immopoly.org/ajaxproxy.php",
         context: document.body,
-        data:{'type':'takeover'},
+        data:{
+            'mode':'native',
+            'url' : escape("http://immopoly.appspot.com/statistic/heatmap?type=takeover")
+        },
         dataType:"json",
           success: function(data){
             logger('login response '+JSON.stringify(data) );

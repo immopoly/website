@@ -5,20 +5,24 @@
 
 <div class="row">
 	<div class="span6">
-		<h2>Die monatlichen Top-Makler</h2>
-		<table id="top_list" class="table-striped table-bordered table-condensed"> 
+		<h2>Die Top-Makler (IS24-ReleaseTester) </h2>
+		<table id="topx_list" class="table-striped table-bordered table-condensed"> 
 			 <colgroup>
 					 <col class="rank"></col>
 					 <col class="name"></col>
 					 <col class="balance"></col>
+					 <!--
 					 <col class="balanceMonth"></col>
+					-->
 			 </colgroup> 
 			 <thead> 
 					 <tr> 
 							 <th>Platz</th> 
 							 <th>Name</th> 
 							 <th>Kontostand</th>
+							 <!--
 							 <th>monatl. Umsatz</th>
+							-->
 					 </tr>
 			 </thead>
 			 <tbody>

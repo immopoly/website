@@ -18,13 +18,16 @@ function validateStartParams(){
 // checks if a called page is valid
 function validatePageCall($page){
 	
-	global $pageNames;
-
 	if(
-		empty($page) ||		
-		!key_exists($page,$pageNames)
+		empty($page)
 	){
 		$page="home";
+	}	
+
+	if(substr($page, 0,10) == "frameless-"){
+		$page = substr($page,10);
+	}else if(substr($page, 0,6) == "plain-"){
+		$page = substr($page,6);
 	}	
 
 	if( is_readable(the_filename($page))){
@@ -34,42 +37,6 @@ function validatePageCall($page){
 	}else{
 		die("Error: Undefined call and no standard content available.");
 	}
-}
-
-//builds a link with the current link-setup (rewrite or not etc)
-function get_the_link($destPage,$lowerCaseOnly=false,$customLinktext="",$additionalParams="",$classes=""){
-
-	if($additionalParams != ""){
-		$additionalParams="&amp;".$additionalParams;
-	}
-	
-	$destPage=validatePageCall($destPage);
-	if($customLinktext==""){
-		return "<a class=".$classes." href='index.php?page=".$destPage.$additionalParams."' title='Zur Seite &lt;".get_the_pagename($destPage)."&gt;'>".get_the_pagename($destPage,$lowerCaseOnly)."</a>";
-	}else{
-		return "<a class=".$classes." href='index.php?page=".$destPage.$additionalParams."' title='Zur Seite &lt;".get_the_pagename($destPage)."&gt;'>".$customLinktext."</a>";	
-	}
-}
-
-//echos a link with the current link-setup (rewrite or not etc)
-function the_link($destPage,$lowerCaseOnly=false,$customLinktext="",$additionalParams="",$classes=""){
-	echo get_the_link($destPage,$lowerCaseOnly,$customLinktext,$additionalParams,$classes);	
-}
-
-//returns the caption name of the page, optional in all lower case
-function get_the_pagename($page,$lowerCaseOnly=false){
-	global $pageNames;
-	
-	if($lowerCaseOnly){
-		return $pageNames[$page];
-	}else{
-		return makeUppercase($pageNames[$page]);
-	} 
-}
-
-//echos the caption name of the page, optional in all lower case
-function the_pagename($page,$lowerCaseOnly=false){
-	echo get_the_pagename($page,$lowerCaseOnly);
 }
 
 //includes the given page into this position
@@ -83,49 +50,6 @@ function the_filename($page){
 	global $CONFIG;		
 	return  $CONFIG["contentPath"].'/'.$page.$CONFIG['pagefileSuffix'];
 }
-
-//constructs a menu of the given style
-function the_menu($currentPage,$menupoints,$styleMenu="ul",$styleSingle="li",$classNormal="",$classActive="active"){
-	
-	if($styleMenu == "ol"){
-		echo "<ol>";
-	}else if($styleMenu == ""){
-		
-	}else{
-		echo "<ul>";
-	}
-		
-	foreach ( $menupoints as $point){
-		the_menuentry($currentPage,$point,$styleSingle,$classNormal,$classActive);	
-	}	
-	
-	if($styleMenu == "ol"){
-		echo "</ol>";
-	}else if($styleMenu == ""){
-		
-	}else{
-		echo "</ul>";
-	}	
-}
-
-//build a single menu entry
-function the_menuentry($currentPage,$page,$style="li",$classNormal="",$classActive="active"){
-	if($style=="div"){
-		echo "<div".getMenuClass($currentPage,$page,$classNormal,$classActive).">".get_the_link($page,true)."</div>";	
-	}else{
-		echo "<li".getMenuClass($currentPage,$page,$classNormal,$classActive).">".get_the_link($page,true)."</li>";
-	}
-}
-
-// echos active if the current page is equal to the menu point
-function getMenuClass($currentPage,$target,$classNormal="",$classActive="active"){
-	if($currentPage == $target){
-		return ' class='.$classActive;
-	}else{
-		return ' class='.$classNormal;
-	}	
-}
-
 
 /*
  * HELPER FUNCTIONS
@@ -238,9 +162,14 @@ function getGermanDate($timestamp,$showTime=false) {
 	
 }
 
-function isFrameless($page){
-	global $framelessPages;
-	return in_array($page,$framelessPages);
+function isFrameless(){
+	return ! empty($_GET['frameless']);
 }
+
+
+function isPlain(){
+	return ! empty($_GET['plain']);
+}
+
 
 ?>
