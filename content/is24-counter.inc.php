@@ -39,6 +39,7 @@ function getNumberOfPlayers(){
         $counter = getCounterInfo();
     }
 
+    var_dump($counter);
     $result = "???";
 
     if(is_object($counter)){
@@ -46,6 +47,9 @@ function getNumberOfPlayers(){
     }else if(is_array($counter)){
         $result = $counter["Counter"]["badgeOneOfTheFirst"];
     }
+
+    echo "\n";
+    var_dump($result);
 
     if(empty($result) || ! is_int($result) ){
         return "?.???";
