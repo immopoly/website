@@ -2,7 +2,11 @@
 
 Verantwortlicher Ansprechpartner für diese Webseite ist:
 <address>
-<em>tba</em>
+<em>Immopoly Team</em><br/>
+z.H. Yan Minagawa<br/>
+c/o  You Is Now Laby<br/>
+Andreasstr. 10<br/>
+10243 Berlin<br/>
 </address>
 
 <h2>Credits</h2>
@@ -11,14 +15,6 @@ Verantwortlicher Ansprechpartner für diese Webseite ist:
 
 <div class="row">
 	
-	<div class="span4">
-
-		<h3>Titelbild</h3>
-		<p>Das Titelbild der Startseite haben wir dem Flickr-User <a href="http://www.flickr.com/photos/giesenbauer/" title="Flickr-Profil">Bjørn Giesenbauer</a> zu verdanken. Hier gibt es das Bild:
-		</p>
-		<p><a href="http://www.flickr.com/photos/giesenbauer/3458525781/" title="Bilddownload auf Flickr" class="btn">Zur Flickr-Galerie &raquo;</a></p>
-
-	</div>
 	<div class="span4">
 		<h3>Bootstrap</h3>
 

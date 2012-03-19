@@ -1,3 +1,11 @@
+        <div id="fb-root"></div>
+	<script>(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=187696841334350";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));</script>
       <!-- Main hero unit for a primary marketing message or call to action -->
       <div class="hero-unit">
         <h1>Immopoly</h1>
@@ -35,7 +43,7 @@
         <div class="span4">
           <h2>Folge uns</h2>
 	  <p>
-	  <a href="http://immopoly.blogspot.com"><img src="/img/layout/blogger.png"></a>
+	  <a href="http://immopoly.blogspot.com"><img src="/img/layout/blogger.png"></a><div class="fb-like" data-href="http://www.facebook.com/Immopoly" data-send="true" data-width="450" data-show-faces="true"></div>
 	  </p>
 	<p>
             <div class="g-plus" data-href="https://plus.google.com/115948347977579800149" data-width="280" data-height="131" data-theme="light"></div>
@@ -73,5 +81,5 @@
         </div>
       </div>
 
-      <p class="alert alert-info"><strong>Hinweis:</strong> Das Spiel bisher nur in Deutschland, da wir die echten Wohnungsangebote innerhalb des Angebots von <a href="http://www.immobilienscout24.de" title="Zur Website von ImmobilienScout24">ImmobilienScout24.de</a> verwenden.
+      <p class="alert alert-info"><strong>Hinweis:</strong> Das Spiel funktioniert bisher nur in Deutschland, da wir die echten Wohnungsangebote innerhalb des Angebots von <a href="http://www.immobilienscout24.de" title="Zur Website von ImmobilienScout24">ImmobilienScout24.de</a> verwenden.
       </p>

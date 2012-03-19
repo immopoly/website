@@ -1,5 +1,71 @@
 <?PHP
 
+if (!function_exists('http_response_code')) {
+    function http_response_code($code = NULL) {
+
+        if ($code !== NULL) {
+
+            switch ($code) {
+                case 100: $text = 'Continue'; break;
+                case 101: $text = 'Switching Protocols'; break;
+                case 200: $text = 'OK'; break;
+                case 201: $text = 'Created'; break;
+                case 202: $text = 'Accepted'; break;
+                case 203: $text = 'Non-Authoritative Information'; break;
+                case 204: $text = 'No Content'; break;
+                case 205: $text = 'Reset Content'; break;
+                case 206: $text = 'Partial Content'; break;
+                case 300: $text = 'Multiple Choices'; break;
+                case 301: $text = 'Moved Permanently'; break;
+                case 302: $text = 'Moved Temporarily'; break;
+                case 303: $text = 'See Other'; break;
+                case 304: $text = 'Not Modified'; break;
+                case 305: $text = 'Use Proxy'; break;
+                case 400: $text = 'Bad Request'; break;
+                case 401: $text = 'Unauthorized'; break;
+                case 402: $text = 'Payment Required'; break;
+                case 403: $text = 'Forbidden'; break;
+                case 404: $text = 'Not Found'; break;
+                case 405: $text = 'Method Not Allowed'; break;
+                case 406: $text = 'Not Acceptable'; break;
+                case 407: $text = 'Proxy Authentication Required'; break;
+                case 408: $text = 'Request Time-out'; break;
+                case 409: $text = 'Conflict'; break;
+                case 410: $text = 'Gone'; break;
+                case 411: $text = 'Length Required'; break;
+                case 412: $text = 'Precondition Failed'; break;
+                case 413: $text = 'Request Entity Too Large'; break;
+                case 414: $text = 'Request-URI Too Large'; break;
+                case 415: $text = 'Unsupported Media Type'; break;
+                case 500: $text = 'Internal Server Error'; break;
+                case 501: $text = 'Not Implemented'; break;
+                case 502: $text = 'Bad Gateway'; break;
+                case 503: $text = 'Service Unavailable'; break;
+                case 504: $text = 'Gateway Time-out'; break;
+                case 505: $text = 'HTTP Version not supported'; break;
+                default:
+                    exit('Unknown http status code "' . htmlentities($code) . '"');
+                break;
+            }
+
+            $protocol = (isset($_SERVER['SERVER_PROTOCOL']) ? $_SERVER['SERVER_PROTOCOL'] : 'HTTP/1.0');
+
+            header($protocol . ' ' . $code . ' ' . $text);
+
+            $GLOBALS['http_response_code'] = $code;
+
+        } else {
+
+            $code = (isset($GLOBALS['http_response_code']) ? $GLOBALS['http_response_code'] : 200);
+
+        }
+
+        return $code;
+
+    }
+}
+
+
 // Script: Simple PHP Proxy: Get external HTML, JSON and more!
 //
 // *Version: 1.6, Last updated: 1/24/2009*
@@ -150,98 +216,39 @@ $WHITELIST_DOMAINS = array('immopoly.appspot.com');
  * CACHING
  */
 $enable_caching = true;
-//how long after a cache will be renewed
-define(CACHE_TTL,300);//5 mins
-define(CACHE_DIR,'.cache');
 
-// ############################################################################
-//  FUNCTIONS
-// ############################################################################
-
-/**
- * checks or creates the cache dir 
- */
-function prepare_cache(){
-  return is_writable(CACHE_DIR) || mkdir(CACHE_DIR,0777,true);
+if($enable_caching){
+  //how long after a cache will be renewed
+  define("CACHE_TTL",300);//5 mins
+  define("CACHE_DIR",'.cache');
+  require_once("inc/cache.inc.php");
+  prepare_cache();
 }
-
-/**
- * generates a cachefile name for a given url
- */
-function get_cachefile_name($url){
-  return CACHE_DIR.'/'.sha1($url);
-}
-
-/**
- * checks if a cache file exists and is not expired for a given url
- */
-function cachefile_exits($url){
-
-  if(! prepare_cache()){
-    return false;
-  }
-
-  return is_readable(  get_cachefile_name($url) ) && ! cachefile_is_too_old($url);
-}
-
-/**
- * returns if the modification time is older than the cache-time
- */
-function cachefile_is_too_old($url){
-    return ( time() - filemtime( get_cachefile_name($url) )) >= CACHE_TTL;
-}
-
-/**
- * checks if a cache file exists for a given url
- */
-function cachefile_read($url){
-
-  if(! prepare_cache()){
-    return false;
-  }
-
-  return file_get_contents( get_cachefile_name($url) );
-}
-
-function cachefile_write($url, $content){
-
-  if(! prepare_cache()){
-    return false;
-  }
-
-  return file_put_contents( get_cachefile_name($url), $content);
-}
-
-function logline($message=null){
-
-    static $logfile = "log.txt";
-
-    exec("echo \"".date(DATE_RFC2822)." :".$message."\" >> ".$logfile);
-}
-
-
-// ############################################################################
-
 
 $url = $_GET['url'];
+
+//decode url if neccessary
+if( $url && parse_url($url,PHP_URL_HOST) == "" ){
+  $url = rawurldecode($url);
+}
 
 if ( !$url ) {
   
   // Passed url not specified.
   $contents = 'ERROR: url not specified';
-  $status = array( 'http_code' => 'ERROR' );
+  $status = array( 'http_code' => 400 );
   
 } else if ( !preg_match( $valid_url_regex, $url ) ) {
   
   // Passed url doesn't match $valid_url_regex.
   $contents = 'ERROR: invalid url';
-  $status = array( 'http_code' => 'ERROR' );
+  $status = array( 'http_code' => 400 );
   
 }elseif (   is_array($WHITELIST_DOMAINS) && ! empty($WHITELIST_DOMAINS) && 
             ! in_array( parse_url($url,PHP_URL_HOST), $WHITELIST_DOMAINS) ) {
 
-  $contents = 'ERROR: invalid url (not in whitelist)';
-  $status = array( 'http_code' => 'ERROR' );
+  $contents = 'ERROR: invalid url "'.parse_url($url,PHP_URL_HOST).'" is not in whitelist [full url="'.$url.'"]';
+  $status = array( 'http_code' => 403 );
   
 } else {
 
@@ -259,7 +266,7 @@ if ( !$url ) {
       curl_setopt( $ch, CURLOPT_POSTFIELDS, $_POST );
     }
     
-    if ( $_GET['send_cookies'] ) {
+    if ( ! empty($_GET['send_cookies']) ) {
       $cookie = array();
       foreach ( $_COOKIE as $key => $value ) {
         $cookie[] = $key . '=' . $value;
@@ -276,17 +283,17 @@ if ( !$url ) {
     curl_setopt( $ch, CURLOPT_HEADER, true );
     curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
     
-    curl_setopt( $ch, CURLOPT_USERAGENT, $_GET['user_agent'] ? $_GET['user_agent'] : $_SERVER['HTTP_USER_AGENT'] );
+    curl_setopt( $ch, CURLOPT_USERAGENT, !empty($_GET['user_agent']) ? $_GET['user_agent'] : $_SERVER['HTTP_USER_AGENT'] );
     
     list( $header, $contents ) = preg_split( '/([\r\n][\r\n])\\1/', curl_exec( $ch ), 2 );
     
-    $status = curl_getinfo( $ch );
-    
-    curl_close( $ch );    
-
-    if( strtolower($_SERVER['REQUEST_METHOD']) == 'get' && $enable_caching){
+    if(curl_errno($ch)){
+      $status = array('http_code', curl_getinfo($ch,CURLINFO_HTTP_CODE) );
+      $contents = curl_error($ch);
+    }else if( strtolower($_SERVER['REQUEST_METHOD']) == 'get' && $enable_caching){
       cachefile_write($url,$contents);  
     }
+    curl_close( $ch );    
     
   }
 
@@ -299,7 +306,7 @@ $header_text = preg_split( '/[\r\n]+/', $header );
 if ( $_GET['mode'] == 'native' ) {
   if ( !$enable_native ) {
     $contents = 'ERROR: invalid mode';
-    $status = array( 'http_code' => 'ERROR' );
+    $status = array( 'http_code' => 403 );
   }
   
   // Propagate headers to response.
@@ -307,6 +314,10 @@ if ( $_GET['mode'] == 'native' ) {
     if ( preg_match( '/^(?:Content-Type|Content-Language|Set-Cookie):/i', $header ) ) {
       header( $header );
     }
+  }
+
+  if( ! empty($status['http_code'])){
+    http_response_code($status['http_code']);
   }
   
   print $contents;
