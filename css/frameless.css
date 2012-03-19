@@ -55,16 +55,16 @@ body.is24-counter pre {
   border: 0;
   outline: 0;
   font-size: 100%;
-  vertical-align: baseline;
+  vertical-align: baseline; 
   
   background-color: transparent;
 }
 body.is24-counterbody {
-  width: 75px;
+  width: 100px;
 }
 body.is24-counter pre {
-  font: 1.75em/1 Tahoma, Geneva, Kalimati, sans-serif;
-  color: #444;
+  font: 2.25em/1 Tahoma, Geneva, Kalimati, sans-serif;
+  color: #003468;
 }
 
 

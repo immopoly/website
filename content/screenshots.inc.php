@@ -80,7 +80,7 @@
 		<div id="android" class="carousel slide">
 			 <div class="carousel-inner">
 				 <div class="item">
-	    			<img src="img/screenshots/android/mapcluster.png" alt="Screenshot" />
+	    			<img src="img/screenshots/android/1.png" alt="Screenshot" />
 	                <!--
 	                <div class="carousel-caption">
 	                  <h4>First Thumbnail label</h4>
@@ -89,7 +89,7 @@
 	                -->
 	             </div>
 	             <div class="item">
-	    			<img src="img/screenshots/android/anmelden.png" alt="Screenshot" />
+	    			<img src="img/screenshots/android/11.png" alt="Screenshot" />
 	                <!--
 	                <div class="carousel-caption">
 	                  <h4>First Thumbnail label</h4>
@@ -98,7 +98,7 @@
 	                -->
 	             </div>
 	             <div class="item">
-	    			<img src="img/screenshots/android/mapsuche.png" alt="Screenshot" />
+	    			<img src="img/screenshots/android/2.png" alt="Screenshot" />
 	                <!--
 	                <div class="carousel-caption">
 	                  <h4>First Thumbnail label</h4>
@@ -107,7 +107,7 @@
 	                -->
 	             </div>
 				 <div class="item">
-	    			<img src="img/screenshots/android/info.png" alt="Screenshot" />
+	    			<img src="img/screenshots/android/3.png" alt="Screenshot" />
 	    			<!--
 	                <div class="carousel-caption">
 	                  <h4>First Thumbnail label</h4>
@@ -116,7 +116,7 @@
 	                -->
 	    		 </div>
 	    		 <div class="item">
-	    			<img src="img/screenshots/android/exposeview.png" alt="Screenshot" />
+	    			<img src="img/screenshots/android/4.png" alt="Screenshot" />
 	    			<!--
 	                <div class="carousel-caption">
 	                  <h4>First Thumbnail label</h4>
@@ -125,7 +125,7 @@
 	                -->
 	    		 </div>
 	    		 <div class="item">
-	    			<img src="img/screenshots/android/uebernahme.png" alt="Screenshot" />
+	    			<img src="img/screenshots/android/5.png" alt="Screenshot" />
 	    			<!--
 	                <div class="carousel-caption">
 	                  <h4>First Thumbnail label</h4>
@@ -134,7 +134,7 @@
 	                -->
 	    		 </div>
 	    		 <div class="item">
-	    			<img src="img/screenshots/android/portfoliomap.png" alt="Screenshot" />
+	    			<img src="img/screenshots/android/6.png" alt="Screenshot" />
 	    			<!--
 	                <div class="carousel-caption">
 	                  <h4>First Thumbnail label</h4>
@@ -143,7 +143,7 @@
 	                -->
 	    		 </div>	
 	    		 <div class="item">
-	    			<img src="img/screenshots/android/portfoliolist.png" alt="Screenshot" />
+	    			<img src="img/screenshots/android/66.png" alt="Screenshot" />
 	    			<!--
 	                <div class="carousel-caption">
 	                  <h4>First Thumbnail label</h4>
@@ -152,31 +152,14 @@
 	                -->
 	    		 </div>	
 	    		 <div class="item">
-	    			<img src="img/screenshots/android/portfoliolist.png" alt="Screenshot" />
+	    			<img src="img/screenshots/android/7.png" alt="Screenshot" />
 	    			<!--
 	                <div class="carousel-caption">
 	                  <h4>First Thumbnail label</h4>
 	                  <p>Text</p>
 	                </div>
 	                -->
-	    		 </div>
-	    		 <div class="item">
-	    			<img src="img/screenshots/android/historie.png" alt="Screenshot" />
-	    			<!--
-	                <div class="carousel-caption">
-	                  <h4>First Thumbnail label</h4>
-	                  <p>Text</p>
-	                </div>
-	                -->
-	    		 </div>	
-	    		 <div class="item">
-	    			<img src="img/screenshots/android/profile.png" alt="Screenshot" />
-	    			<!--
-	                <div class="carousel-caption">
-	                  <h4>First Thumbnail label</h4>
-	                  <p>Text</p>
-	                </div>
-	                -->
+
 	    		 </div>	
 	  		 </div>
 
