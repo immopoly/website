@@ -203,7 +203,7 @@
         $(document).ready(function() {
 
           $("#toplist_switcher a.topx_balance").trigger('click');
-          updateTable("history");
+          updateTable("history",0,30);
           initHeatmap();          
         });
       </script>
