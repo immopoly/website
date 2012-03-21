@@ -194,6 +194,8 @@
           
           if($(this).attr("data-type")){
             retrievePlainSubpage($(this).attr("data-type"));
+            $("#toplist_switcher a").removeClass("active");
+            $(this).addClass("active");
           }
           return false;
         });

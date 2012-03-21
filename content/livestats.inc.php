@@ -6,13 +6,11 @@
 <script type="text/javascript">
 </script>
 
-<div class="subnav">
-	<ul class="nav nav-pills" id="toplist_switcher">
-	  <li class="active"><a href="#">Andere Statistik aufrufen</a></li>
-	  <li><a href="#overall" class="topx_balance" data-type="topx_balance" title="Die Statistik nach Gesamtvermögen sortieren">Gesamt</a></li>
-	  <li><a href="#month" class="topx_balancemonth" data-type="topx_balancemonth" title="Die Statistik nach Monatsgewinnen sortieren">Monat</a></li>
-	  <li><a href="#releasebadge" class="topx_balancereleasebadge" data-type="topx_balancereleasebadge" title="Die Statistik nach Gesamtvermögen seit Release-Test-Start sortieren">Release-Tester</a></li>
-	</ul>
+<div id="toplist_switcher">
+		<strong>Andere Statistik aufrufen:</strong>
+		<a href="#overall" class="topx_balance btn btn-small btn-inverse" data-type="topx_balance" title="Die Statistik nach Gesamtvermögen sortieren">Gesamt</a>
+		<a href="#month" class="topx_balancemonth btn btn-small btn-inverse" data-type="topx_balancemonth" title="Die Statistik nach Monatsgewinnen sortieren">Monat</a>
+		<a href="#releasebadge" class="topx_balancereleasebadge btn btn-small btn-inverse" data-type="topx_balancereleasebadge" title="Die Statistik nach Gesamtvermögen seit Release-Test-Start sortieren">Release-Tester</a>
 </div>
 
 <div class="row">
