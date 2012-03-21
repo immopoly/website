@@ -134,6 +134,11 @@
                   <i class="icon-list-alt icon-white"></i>&nbsp;Live-Statistiken
                 </a>
               </li>
+              <li class="blog">
+                <a href="http://immopoly.blogspot.de">
+                  <i class="icon-share-alt icon-white"></i>&nbsp;Blog
+                </a>
+              </li>
             </ul>
           </div><!--/.nav-collapse -->
           <div style="display: none;">
