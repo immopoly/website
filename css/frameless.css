@@ -72,7 +72,9 @@ body.is24-counter pre {
  *	page: toplist
  */ 
 
-body.toplist{
+body.topx_balance,
+body.topx_balancemonth,
+body.topx_balancereleasebadge{
 	background-color: white;
 	color: #333;	
 }
