@@ -3,9 +3,6 @@
 	Kein Spiel ohne Bestenliste! Hier siehst Du wer gerade die Top-Liste anführt und was die anderen Spieler zuletzt so getrieben haben, um die Spitze zu erklimmen.
 </p>
 
-<script type="text/javascript">
-</script>
-
 <div id="toplist_switcher">
 		<strong>Andere Statistik aufrufen:</strong>
 		<a href="#overall" class="topx_balance btn btn-small btn-inverse" data-type="topx_balance" title="Die Statistik nach Gesamtvermögen sortieren">Gesamt</a>
