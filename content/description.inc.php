@@ -1,5 +1,5 @@
 <h1>Wie funktioniert Immopoly?</h1>
-<p>Die Welt von Immopoly besteht aus ein ein paar einfachen Schritten und Begriffen.<p>
+<p class="lead">Die Welt von Immopoly besteht aus ein ein paar einfachen Schritten und Begriffen.<p>
 <div class="row">
 	<div class="span3 well">
 		<h2>Makler</h2>

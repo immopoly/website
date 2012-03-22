@@ -1,5 +1,5 @@
 <h1>Screenshots</h1>
-<p>Um einen erste Eindruck vom Spiel zu erhalten haben wir ein paar Screenshots zusammengestellt.</p>
+<p class="lead">Um einen erste Eindruck vom Spiel zu erhalten haben wir ein paar Screenshots zusammengestellt.</p>
 <div class="row">
 
 	<div class="span4 offset2">

@@ -1,5 +1,5 @@
 <h1>Downloaden der App</h1>
-<p><strong>Dank der vielen durchgearbeiteten Wochenenden können wir bereits Apps für iOS (iPhone &amp; iPad) als auch für Android zum Download anbieten.</strong> Lad einfach die passende Version für Dein Gerät herunter und mach den Immobilienmarkt unsicher!</p> 
+<p class="lead"><strong>Dank der vielen durchgearbeiteten Wochenenden können wir bereits Apps für iOS (iPhone &amp; iPad) als auch für Android zum Download anbieten.</strong> Lad einfach die passende Version für Dein Gerät herunter und mach den Immobilienmarkt unsicher!</p> 
 <div class="row">
   <div class="span6">
     <h2>iPhone &amp; iPad</h2>
