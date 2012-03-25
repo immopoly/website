@@ -1,6 +1,10 @@
+# testfiles for local development
 top.json
 topx.json
 history.json
+user.json
 
+#don't include everything I don't explicitly want
 bootstrap/js/*.js
 bootstrap/css/*.css
+
