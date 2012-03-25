@@ -38,6 +38,8 @@
 <?php if($isFrameless): ?>
     <link href="css/frameless.css" rel="stylesheet">    
 <?php else: ?>
+    <?php define('FRAME_MODE',true); ?>
+
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -132,6 +134,11 @@
                   <i class="icon-list-alt icon-white"></i>&nbsp;Live-Statistiken
                 </a>
               </li>
+              <li class="blog">
+                <a href="http://immopoly.blogspot.de">
+                  <i class="icon-share-alt icon-white"></i>&nbsp;Blog
+                </a>
+              </li>
             </ul>
           </div><!--/.nav-collapse -->
           <div style="display: none;">
@@ -182,10 +189,23 @@
       <script type="text/javascript" src="js/heatmap.js"></script>
       <script type="text/javascript" src="js/interactive.js"></script>
       <script type="text/javascript">
+        
+        $("#toplist_switcher a").bind('click',function(){
+          
+          if($(this).attr("data-type")){
+            retrievePlainSubpage($(this).attr("data-type"));
+            $("#toplist_switcher a").removeClass("active");
+            $(this).addClass("active");
+          }
+          return false;
+        });
+
+
         //do on start
         $(document).ready(function() {
-          updateTable("#top_makler","topx", 0, 30);
-          updateTable("#history_list","history");
+
+          $("#toplist_switcher a.topx_balance").trigger('click');
+          updateTable("history",0,20);
           initHeatmap();          
         });
       </script>

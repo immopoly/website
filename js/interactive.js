@@ -10,22 +10,26 @@
     }
     
     //activates debug output
-    var debugmode = false;	
+    var debugmode = true;	
     
     /**
      * loads the data for the calltype via JSON-request and updates the given table-id with the data, if parseable
-     * @param id table to update
      * @param callType type of call to make for JSON
      * @param startVal on list functions for paging results (default: 0)
      * @param endVal on list functions for paging results (default: 10)
      */
-	function updateTable(id, callType, startVal, endVal){
+	function updateTable(callType, startVal, endVal){
   		
 		//check values
-  		if(typeof id == "undefined" || typeof callType == "undefined"){
+  		if(typeof callType == "undefined"){
   			return; 
-  		}
-  		
+  		}else if(callType.indexOf("_") != -1 ){
+        specifier = callType.split("_",2)[1];
+        callType = callType.split("_",2)[0];
+      }else{
+        specifier = null;
+      }
+
   		if(typeof startVal == "undefined"){
   			startVal = 0;
   		}
@@ -41,27 +45,31 @@
 
         targetURL = "http://immopoly.appspot.com/user/"+callType+"?start="+startVal+"&end="+endVal;
 
-        if(callType=="topx"){
-          targetURL +="&ranktype=balanceReleaseBadge";
+        if(typeof specifier != "undefined"){
+
+          if(specifier=="balanceReleaseBadge"){
+            targetURL +="&ranktype=balanceReleaseBadge";
+          }else if(specifier=="balanceMonth"){
+            targetURL +="&ranktype=balanceMonth";
+          } else if(specifier=="balance"){
+            targetURL +="&ranktype=balance";
+          } 
         }
 
   			url = "ajaxproxy.php?mode=native&url="+escape(targetURL);
   		}
   
 
-  		//alert("Loading data from '"+url+"'");
-  		
   		$.getJSON(url, function(jsonData){
   			
   			logger(jsonData);
-  			//alert(jsonData);
   			
   			runtimeError = false;
 
   			//test data before disable the loader
   			$(jsonData).each(function(intIndex){
 
-  				entry = objectToArrayVar(callType, jsonData[intIndex], startVal+intIndex);
+  				entry = objectToArrayVar(callType, specifier, jsonData[intIndex], startVal+intIndex);
   				
   				if(entry == null){
   					runtimeError = true;
@@ -80,7 +88,7 @@
   			//add the entries
   			$(jsonData).each(function(intIndex){
 
-  				entry = objectToArrayVar(callType, jsonData[intIndex], intIndex);
+  				entry = objectToArrayVar(callType, specifier, jsonData[intIndex], intIndex);
   				
   				if(entry == null){
   					runtimeError = true;
@@ -114,15 +122,31 @@
   		});
   		
   	}
+
+    function retrievePlainSubpage(pagename,htmlid){
+
+      if(typeof pagename == "undefined"){
+        return;
+      }
+
+      if(typeof htmlid == "undefined"){
+        htmlid = "#toplists";
+      }
+
+      $.get('plain-'+pagename+'.html', function(data) {
+        $(htmlid).html(data);
+      });
+    } 
 	
 	/**
 	 * converts our json-objects into arrays of strings
 	 * @param callType defines how the object should be handled
+   * @param specifier defines a special sub-type of callType
 	 * @param jsonData the json-object to convert
 	 * @param intIndex helper index to handle lists better
 	 * @returns {Array} of object instances
 	 */
-	function objectToArrayVar(callType, jsonData, intIndex){
+	function objectToArrayVar(callType, specifier, jsonData, intIndex){
 		
 		var entryData = new Array();
 		
@@ -134,8 +158,11 @@
 			entryData.push( "" );
 			entryData.push( user.username );
 			entryData.push( formatMoney(user.info.balance) );
-			//entryData.push( formatMoney(user.info.balanceMonth) );
-						
+      
+      if(specifier == "balanceMonth" ){
+			   entryData.push( formatMoney(user.info.balanceMonth) );
+			}			
+
 			break;
 		case "history":
 			historyObj = jsonData["org.immopoly.common.History"];
@@ -281,7 +308,7 @@
   			return;
   		}
   		
-  		if(typeof debugmode == undefined || debugmode == false){
+  		if(typeof debugmode == "undefined" || debugmode == false){
   			return;
   		}
   		

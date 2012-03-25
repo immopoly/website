@@ -3,7 +3,7 @@
 * DIRTY HACKING IS DIRTY
 */
 
-error_reporting(E_ALL);
+//error_reporting(E_ALL);
 
 define('COUNTER_URL',"http://immopoly.appspot.com/user/counter");
 
@@ -50,18 +50,26 @@ function getNumberOfPlayers(){
     if(empty($result) || ! is_int($result) ){
         return "?.???";
     }
-    return number_format($result,0,",",".");
+    return $result;
 }
+
 function getNumberOfFreeSeats() {
     $seats = 2000;
     // as we want to know how many seats availible
     $playerz = (int)getNumberOfPlayers();
-    if(is_int($playerz)){
-      return $seats-$playerz;
+    
+    if(! is_int($playerz)){
+      return $playerz;
     }
-    return $playerz;
-}
 
+    $result = $seats - $playerz;
+
+    if($result < 0){
+        $result = 0;
+    }
+
+    return number_format($result,0,",",".");
+}
 ?>
 
 <pre>

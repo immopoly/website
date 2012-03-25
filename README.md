@@ -53,4 +53,4 @@ My love goes out to the awesome devs at Twitter who created this freaking cool f
 
 ## contact
 
-If you have questions on this project, drop me a note through GitHub on my [profile page](https://github.com/stefanhoth).
+If you have questions on this project, drop [me](https://github.com/stefanhoth) a note through GitHub on my [profile page](https://github.com/stefanhoth).

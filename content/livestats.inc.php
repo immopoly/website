@@ -1,40 +1,29 @@
 <h1>Live</h1>
-<p>
+<p class="lead">
 	Kein Spiel ohne Bestenliste! Hier siehst Du wer gerade die Top-Liste anführt und was die anderen Spieler zuletzt so getrieben haben, um die Spitze zu erklimmen.
 </p>
 
+<script type="text/javascript">
+</script>
+
+<div id="toplist_switcher">
+		<strong>Andere Statistik aufrufen:</strong>
+		<a href="#overall" class="topx_balance btn btn-small btn-inverse" data-type="topx_balance" title="Die Statistik nach Gesamtvermögen sortieren">Gesamt</a>
+		<a href="#month" class="topx_balancemonth btn btn-small btn-inverse" data-type="topx_balancemonth" title="Die Statistik nach Monatsgewinnen sortieren">Monat</a>
+		<a href="#releasebadge" class="topx_balancereleasebadge btn btn-small btn-inverse" data-type="topx_balancereleasebadge" title="Die Statistik nach Gesamtvermögen seit Release-Test-Start sortieren">Release-Tester</a>
+</div>
+
 <div class="row">
-	<div class="span6">
-		<h2>Die Top-Makler (IS24-ReleaseTester) </h2>
-		<table id="topx_list" class="table-striped table-bordered table-condensed"> 
-			 <colgroup>
-					 <col class="rank"></col>
-					 <col class="name"></col>
-					 <col class="balance"></col>
-					 <!--
-					 <col class="balanceMonth"></col>
-					-->
-			 </colgroup> 
-			 <thead> 
-					 <tr> 
-							 <th>Platz</th> 
-							 <th>Name</th> 
-							 <th>Kontostand</th>
-							 <!--
-							 <th>monatl. Umsatz</th>
-							-->
-					 </tr>
-			 </thead>
-			 <tbody>
-					 <tr class="loading">
-							 <td colspan="5" class="center">
-									 <img src="img/layout/ajax-loader.gif" alt="Lade..."/>
-									 <p>Lade Daten...</p>
-							 </td>
-					 </tr>
-			 </tbody>
-	 	</table>
-	</div>
+	<div id="toplists">
+		<div class="span6">
+			<h2>Top-Liste</h2>
+			<div style="text-align: center;">
+				<img src="img/layout/ajax-loader.gif" alt="Lade..."/>
+				<p>Lade Daten...</p>
+			</div>	
+		</div>
+	</div>	
+
 	<div class="span6">
 		<h2>Die letzten Aktionen im Spiel (Gesamthistorie)</h2>
 
