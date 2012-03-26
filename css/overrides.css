@@ -98,3 +98,9 @@ table#history_list p.btn-small{
 .contentholder{
 	min-height: 250px;
 }
+
+.news_entry{
+	border-left: 1px solid #DDD;
+	padding: 5px 10px;
+	margin: 20px auto;
+}
