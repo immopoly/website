@@ -5,7 +5,11 @@
 		"cssPath" => "css",
 		"imagePath" => "img",
 		"contentPath" => "content",
-		"pagefileSuffix" => ".inc.php"
+		"pagefileSuffix" => ".inc.php",
+		"newsFilePattern" => "^(\d){4}.*\.html$"
 		);
+
+	//extra entry to use contentPath-config-var
+	$CONFIG['newsPath'] = $CONFIG['contentPath'].'/news';
 
 ?>
