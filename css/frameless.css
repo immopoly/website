@@ -2,8 +2,6 @@
  *	general page layout for frameless views 
 */ 
 	body{
-		background-color: black; 
-		color: #DDD;
 		padding: 10px;
 	}
 
@@ -69,12 +67,12 @@ body.is24-counter pre {
 
 
 /* 
- *	page: toplist
+ *	page: news
  */ 
 
-body.topx_balance,
-body.topx_balancemonth,
-body.topx_balancereleasebadge{
-	background-color: white;
-	color: #333;	
+
+.news_entry{
+	border-left: 1px solid #DDD;
+	padding: 5px 10px;
+	margin: 20px auto;
 }
