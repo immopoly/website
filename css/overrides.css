@@ -1,3 +1,8 @@
+body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+}
+
 .hero-unit{
 	background-image: url(../img/layout/berlin-skyline-stripe.jpg);
 	background-position: center;
