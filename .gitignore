@@ -4,3 +4,6 @@ history.json
 
 bootstrap/js/*.js
 bootstrap/css/*.css
+
+#Mac-Crap
+.DS_Store
