@@ -1,7 +1,10 @@
+#local testing
 top.json
 topx.json
 history.json
+.cache
 
+#let me select which js+css I want to use (not all)
 bootstrap/js/*.js
 bootstrap/css/*.css
 
