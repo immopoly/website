@@ -40,6 +40,7 @@
 
 	body > .span6 {
 		margin: 0;
+		width: auto;
 	}
 
 /* 
