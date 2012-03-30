@@ -176,6 +176,25 @@
       <script type="text/javascript">
         $('.carousel').carousel();
       </script>
+
+    <?php elseif ($page == "user"): ?>
+      <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+      <script type="text/javascript" src="js/heatmap.js"></script>
+      <script type="text/javascript" src="js/interactive.js"></script>
+      <script type="text/javascript">
+        
+
+        $("#username").submit(function(){
+          $input = $(this).find("input").eq(0);
+
+          if($input.val().length == 0){
+            alert("Bitte gib einen Namen in das Feld ein.");
+            return false;            
+          }
+
+        });
+      </script>
+
     <?php elseif ($page == "livestats"): ?>
       <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
       <script type="text/javascript" src="js/heatmap.js"></script>
