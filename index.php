@@ -192,13 +192,14 @@
           return false;
         });
 
-
         //do on start
         $(document).ready(function() {
-
+          //load monthly balance by default
           $("#toplist_switcher a.topx_balance").trigger('click');
+          //load 20 history items
           updateTable("history",0,20);
-          initHeatmap();          
+          //start the heatmap
+          initHeatmap();
         });
       </script>
       <?php endif; ?>
