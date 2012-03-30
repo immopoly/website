@@ -197,7 +197,7 @@
           //load monthly balance by default
           $("#toplist_switcher a.topx_balance").trigger('click');
           //load 20 history items
-          updateTable("history",0,20);
+          updateTable("history",0,15);
           //start the heatmap
           initHeatmap();
         });
