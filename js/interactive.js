@@ -6,14 +6,14 @@
     var localmode = false;
 
     if(window.location.hostname == "immopoly.local"){
-    	localmode = true;
+    	localmode = false;
     }
     
     //activates debug output
     var debugmode = true;	
     
     /**
-     * loads the data for the calltype via JSON-request and updates the given table-id with the data, if parseable
+     * loads the data for the callType via JSON-request and updates the given table-id with the data, if parseable
      * @param callType type of call to make for JSON
      * @param startVal on list functions for paging results (default: 0)
      * @param endVal on list functions for paging results (default: 10)
@@ -40,88 +40,126 @@
   		
   		if(localmode){
   			//load static files instead of connecting to the live server
-  			url = "/"+callType+".json";
+        json_name = callType;
+
+        if(specifier != null){
+          json_name += "-"+ specifier;          
+        } 
+
+  			url = "/.local/"+json_name+".json";
   		}else{
 
-        targetURL = "http://immopoly.appspot.com/user/"+callType+"?start="+startVal+"&end="+endVal;
+        targetURL = "http://immopoly.appspot.com/user/"+callType
 
-        if(typeof specifier != "undefined"){
-
-          if(specifier=="balanceReleaseBadge"){
-            targetURL +="&ranktype=balanceReleaseBadge";
-          }else if(specifier=="balanceMonth"){
-            targetURL +="&ranktype=balanceMonth";
-          } else if(specifier=="balance"){
-            targetURL +="&ranktype=balance";
-          } 
+        if(callType == "topx" || callType == "history"){
+          targetURL +="?start="+startVal+"&end="+endVal;
         }
 
-  			url = "ajaxproxy.php?mode=native&url="+escape(targetURL);
+        if(callType == "topx" && specifier != null){
+          targetURL +="&ranktype="+specifier;
+        }else if(callType == "profile" && specifier != null) {
+          targetURL += "/"+specifier+".json";
+        }
+
+  			url = targetURL;
   		}
   
 
-  		$.getJSON(url, function(jsonData){
-  			
-  			logger(jsonData);
-  			
-  			runtimeError = false;
+      if( callType == "profile" ){
+        callback = fillUserProfile(callType,specifier);
+      }else{
+        callback = fillInTableData(callType,specifier,startVal);
+      }
+        
+      getUsingAJAXProxy(url, callback);
 
-  			//test data before disable the loader
-  			$(jsonData).each(function(intIndex){
+    }
 
-  				entry = objectToArrayVar(callType, specifier, jsonData[intIndex], startVal+intIndex);
-  				
-  				if(entry == null){
-  					runtimeError = true;
-  				}
 
-  				return;  				
-  			});
-  			
-  			if(runtimeError){
-  				return;
-  			}
-  			
-  			//delete ajax indicator
-  			$("#"+ callType +"_list tr.loading").remove();
-  			
-  			//add the entries
-  			$(jsonData).each(function(intIndex){
+    var fillInTableData = function (callType, specifier, startVal){
 
-  				entry = objectToArrayVar(callType, specifier, jsonData[intIndex], intIndex);
-  				
-  				if(entry == null){
-  					runtimeError = true;
-  					return;
-  				}
-  				
-  				row = buildTableRow(entry)
-  				logger(row);
-  				$("#"+ callType +"_list tbody").append(row);
-  			});
- 			
-  			//do nothing more on parse errors
-  			if(runtimeError){
-  				return;
-  			}
+        return function(jsonData){
 
-        //reassign rank numbers
-        if(callType == "topx"){
-          
-          var rank = 1;
+    			runtimeError = false;
 
-          $("#"+ callType +"_list tr td:first-child").each(function(){
-            $(this).html(rank++);            
-          });
+          logger(jsonData);
 
-          $("#"+ callType +"_list tr td:nth-child(3)").addClass("right");
-          $("#"+ callType +"_list tr td:nth-child(4)").addClass("right");
+    			//test data before disable the loader
+    			$(jsonData).each(function(intIndex){
 
+    				entry = objectToArrayVar(callType, specifier, jsonData[intIndex], startVal+intIndex);
+    				
+    				if(entry == null){
+    					runtimeError = true;
+    				}
+
+    				return;  				
+    			});
+    			
+    			if(runtimeError){
+    				return;
+    			}
+    			
+    			//delete ajax indicator
+    			$("#"+ callType +"_list tr.loading").remove();
+    			
+    			//add the entries
+    			$(jsonData).each(function(intIndex){
+
+    				entry = objectToArrayVar(callType, specifier, jsonData[intIndex], intIndex);
+    				
+    				if(entry == null){
+    					runtimeError = true;
+    					return;
+    				}
+    				
+    				row = buildTableRow(entry)
+    				logger(row);
+    				$("#"+ callType +"_list tbody").append(row);
+    			});
+   			
+    			//do nothing more on parse errors
+    			if(runtimeError){
+    				return;
+    			}
+
+          //reassign rank numbers
+          if(callType == "topx"){
+            
+            var rank = 1;
+
+            $("#"+ callType +"_list tr td:first-child").each(function(){
+              $(this).html(rank++);            
+            });
+
+            $("#"+ callType +"_list tr td:nth-child(3)").addClass("right");
+            $("#"+ callType +"_list tr td:nth-child(4)").addClass("right");
+
+          }
+        }
+    		
+  	}
+
+    function retrieveUserProfile(username){
+      alert("UserProfile");
+    }
+
+    //boxed callback function to allow more than one parameter
+    var fillUserProfile = function (callType, specifier){
+
+        return function(jsonData){
+          alert("Got data:" + JSON.stringify(jsonData));
+        }
+    }
+
+    function getUsingAJAXProxy(url,callback){
+
+        if( ! localmode){
+          url = "ajaxproxy.php?mode=native&url="+escape(url);
         }
 
-  		});
-  		
-  	}
+        $.getJSON(url,callback);
+    }
 
     function retrievePlainSubpage(pagename,htmlid){
 
@@ -336,25 +374,21 @@
       heatmap = new HeatmapOverlay(map, {"radius":15, "visible":true, "opacity":60});
   
       //request immopoly
-      $.ajax({
-        url: "http://immopoly.org/ajaxproxy.php",
-        context: document.body,
-        data:{
-            'mode':'native',
-            'url' : escape("http://immopoly.appspot.com/statistic/heatmap?type=takeover")
-        },
-        dataType:"json",
-          success: function(data){
-            logger('login response '+JSON.stringify(data) );
-            heatmap.setDataSet(data);
-          },
-          error: function(){
-            logger('error initializing HeatMap');
-          }
-      });
+      if(localmode){
+        url = "/.local/heatmap.json";
+      }else{
+        url = "http://immopoly.appspot.com/statistic/heatmap?type=takeover";
+      }
 
+      getUsingAJAXProxy(url,handleHeatmapData(heatmap) );
   }
 
+  //boxed callback function to allow more than one parameter
+  var handleHeatmapData = function(heatmap){
+    return function(jsonData){
+        heatmap.setDataSet(jsonData);
+    }
+  }
 
 
 /**
