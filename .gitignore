@@ -1,10 +1,17 @@
-# testfiles for local development
+
+#local testing
 top.json
 topx.json
 history.json
-user.json
+user-*.json
 
-#don't include everything I don't explicitly want
+.cache
+
+
+#let me select which js+css I want to use (not all)
 bootstrap/js/*.js
 bootstrap/css/*.css
 
+
+#Mac-Crap
+.DS_Store

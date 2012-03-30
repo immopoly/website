@@ -31,6 +31,10 @@ Some words explaining the structure should help you to put stuff where they belo
 
 	image files needed for showcasing the app(s)
 
+ * **img/actions/**
+
+	image files needed for action Items
+
  * **inc/config.inc.php**
 
 	configuration file.

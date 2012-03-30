@@ -43,7 +43,8 @@
         <div class="span4">
           <h2>Folge uns</h2>
 	  <p>
-	  <a href="http://immopoly.blogspot.com"><img src="/img/layout/blogger.png"></a><div class="fb-like" data-href="http://www.facebook.com/Immopoly" data-send="true" data-width="450" data-show-faces="true"></div>
+	  <a href="http://immopoly.blogspot.com"><img src="/img/layout/blogger.png"></a><a href="https://www.facebook.com/Immopoly"><img src="/img/layout/facebook.png"></a><br/>
+	  <div class="fb-like" data-href="http://www.facebook.com/Immopoly" data-send="true" data-width="450" data-show-faces="true"></div>
 	  </p>
 	<p>
             <div class="g-plus" data-href="https://plus.google.com/115948347977579800149" data-width="280" data-height="131" data-theme="light"></div>

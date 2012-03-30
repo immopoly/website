@@ -2,9 +2,7 @@
  *	general page layout for frameless views 
 */ 
 	body{
-		background-color: black; 
-		color: #DDD;
-		padding: 10px;
+
 	}
 
 	body h2, 
@@ -40,8 +38,9 @@
 		float: left;
 	}
 
-	.span6 table{
-		width: 100%;
+	body > .span6 {
+		margin: 0;
+		width: auto;
 	}
 
 /* 
@@ -72,9 +71,16 @@ body.is24-counter pre {
  *	page: toplist
  */ 
 
-body.topx_balance,
-body.topx_balancemonth,
-body.topx_balancereleasebadge{
-	background-color: white;
-	color: #333;	
+.table-striped tbody tr:nth-child(odd) td, 
+.table-striped tbody tr:nth-child(odd) th {
+	background-color: #bcd5ff;
 }
+
+table#topx_list td{
+	text-align: center;
+}
+
+	table#topx_list td.right{
+		text-align: right;
+		padding-right: 15px;
+	}

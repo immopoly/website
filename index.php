@@ -13,8 +13,6 @@
       exit;
   }
 
-  $isFrameless = isFrameless();
-
 ?>
 <!DOCTYPE html>
 <html lang="de">
@@ -27,15 +25,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <style type="text/css">
-      body {
-        padding-top: 60px;
-        padding-bottom: 40px;
-      }     
-    </style>
     <link href="bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
 
-<?php if($isFrameless): ?>
+<?php if(isFrameless()): ?>
     <link href="css/frameless.css" rel="stylesheet">    
 <?php else: ?>
     <?php define('FRAME_MODE',true); ?>
@@ -83,7 +75,7 @@
 
   </head>
   <body class="<?php echo $page;?>">
-  <?php if($isFrameless): ?>
+  <?php if(isFrameless()): ?>
         <!-- Le javascript
         ================================================== -->
         <!-- Placed before the document to have allow extended functions called in the frameless view -->
