@@ -6,11 +6,11 @@
     var localmode = false;
 
     if(window.location.hostname == "immopoly.local"){
-    	localmode = false;
+    	localmode = true;
     }
     
     //activates debug output
-    var debugmode = true;	
+    var debugmode = false;	
     
     /**
      * loads the data for the callType via JSON-request and updates the given table-id with the data, if parseable
@@ -82,8 +82,6 @@
 
     			runtimeError = false;
 
-          logger(jsonData);
-
     			//test data before disable the loader
     			$(jsonData).each(function(intIndex){
 
@@ -114,7 +112,7 @@
     				}
     				
     				row = buildTableRow(entry)
-    				logger(row);
+
     				$("#"+ callType +"_list tbody").append(row);
     			});
    			
@@ -206,9 +204,6 @@
 			historyObj = jsonData["org.immopoly.common.History"];
 			
 			dateString = new Date(historyObj.time).toRelativeTime();
-			
-			logger(historyObj);
-			logger(historyObj.username);
 			
 			if(typeof historyObj == "undefined" || typeof historyObj.username == "undefined"){
 				return null;
