@@ -1,10 +1,6 @@
 
 #local testing
-top.json
-topx.json
-history.json
-user-*.json
-
+.local
 .cache
 
 
