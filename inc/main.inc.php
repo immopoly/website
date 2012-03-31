@@ -108,60 +108,6 @@ function upperFirstChar($string){
 	return strtoupper($first).$rest;
 }
 
-//checks if a var is a positive integer (for ids etc)
-function isPositiveInt($number){
-	
-	return (preg_match("/^[0-9]+/" ,$number) == 1);
-}
-
-/**
- * formats a given timestamp with the German long form
- * @param timestamp
- * @param showTime (bool) - also display the time?
- * @return formated date string like 'Samstag, 2. Januar 2007' 
- */
-function getGermanDate($timestamp,$showTime=false) {
-
-		$wochentag = date("l",$timestamp);
-		switch ($wochentag) {
-			case "Monday":
-				$wochentag = "Montag";
-				break;
-			case "Tuesday":
-				$wochentag = "Dienstag";
-				break;
-			case "Wednesday":
-				$wochentag = "Mittwoch";
-				break;
-			case "Thursday":
-				$wochentag = "Donnerstag";
-				break;
-			case "Friday":
-				$wochentag = "Freitag";
-				break;
-			case "Saturday":
-				$wochentag = "Samstag";
-				break;
-			case "Sunday":
-				$wochentag = "Sonntag";
-				break;
-	}
-
-	$monate= array("error","Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember");
-	$monatszahl=date("n",$timestamp);
-	$monatheute = $monate[$monatszahl];
-	
-	$datum = $wochentag . ", " . date("j",$timestamp) . ". " . $monatheute . " " . date("Y",$timestamp);
-	$time = date("( H:i )",$timestamp); 
-	
-	if($showTime){
-		return $datum." ".$time;
-	}else{
-		return $datum;			
-	}
-	
-}
-
 function isFrameless(){
 	return ! empty($_GET['frameless']);
 }
@@ -171,5 +117,38 @@ function isPlain(){
 	return ! empty($_GET['plain']);
 }
 
+// NEWS HANDLING
+
+function findNewsFiles($newerThan = 0){
+
+	if(empty($newerThan) || ! is_int( (int) $newerThan)){
+		$newerThan = 0;
+	}
+
+	global $CONFIG;
+
+	if(! $handle = opendir($CONFIG['newsPath'])){
+		return;
+	};
+
+	$newsFiles = array();
+
+	while( $listfile = readdir($handle) ){
+
+		if($listfile == "." || $listfile == ".."){
+			continue;
+		}
+
+		$id = (int) substr($listfile, 0, 4);
+		if(preg_match('/'.$CONFIG['newsFilePattern'].'/i',$listfile) && $newerThan < $id  ){
+			$newsFiles[$id] = $CONFIG['newsPath'].'/'.$listfile;
+		}
+	}
+
+	$newsFiles = array_reverse($newsFiles,true);
+	//echo "<pre>".print_r($newsFiles,true)."</pre>";
+	
+	return $newsFiles;
+}
 
 ?>

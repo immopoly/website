@@ -74,6 +74,11 @@ body.is24-counter pre {
 .table-striped tbody tr:nth-child(odd) td, 
 .table-striped tbody tr:nth-child(odd) th {
 	background-color: #bcd5ff;
+
+.news_entry{
+	border-left: 1px solid #DDD;
+	padding: 5px 10px;
+	margin: 20px auto;
 }
 
 table#topx_list td{
