@@ -3,6 +3,11 @@ body {
         padding-bottom: 40px;
 }
 
+	@media (max-width: 979px)
+	body {
+		padding-top: 0;
+	}
+
 .hero-unit{
 	background-image: url(../img/layout/immopoly-website-header.jpg);
 	background-position: center;
