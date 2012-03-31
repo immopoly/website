@@ -1,7 +1,8 @@
 <?php
 	//TODO find new/all news
 	// $_GET['lastvisit']
-	$newsFiles = findNewsFiles($_GET['lastvisit']);
+	$lastvisit = empty($_GET['lastvisit']) ? null : $_GET['lastvisit'];
+	$newsFiles = findNewsFiles($lastvisit);
 
 ?>
 
