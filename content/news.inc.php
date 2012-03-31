@@ -18,7 +18,7 @@
 <?php else: ?>
 
 <?php foreach ($newsFiles as $id => $newsFile): ?>
-	<div class="table-bordered news_entry">
+	<div class="well news_entry">
 		<span class="pull-right btn-small"><?echo '#'.$id; ?></span>
 		<?php include($newsFile); ?>
 		<span class="pull-right btn-small"><?php echo date("d.m.Y H:m",filemtime($newsFile)); ?></span>
