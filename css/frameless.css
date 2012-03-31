@@ -2,7 +2,7 @@
  *	general page layout for frameless views 
 */ 
 	body{
-		padding: 10px;
+
 	}
 
 	body h2, 
@@ -38,8 +38,9 @@
 		float: left;
 	}
 
-	.span6 table{
-		width: 100%;
+	body > .span6 {
+		margin: 0;
+		width: auto;
 	}
 
 /* 
@@ -67,12 +68,24 @@ body.is24-counter pre {
 
 
 /* 
- *	page: news
+ *	page: toplist
  */ 
 
+.table-striped tbody tr:nth-child(odd) td, 
+.table-striped tbody tr:nth-child(odd) th {
+	background-color: #bcd5ff;
 
 .news_entry{
 	border-left: 1px solid #DDD;
 	padding: 5px 10px;
 	margin: 20px auto;
 }
+
+table#topx_list td{
+	text-align: center;
+}
+
+	table#topx_list td.right{
+		text-align: right;
+		padding-right: 15px;
+	}

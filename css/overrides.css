@@ -1,5 +1,10 @@
+body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+}
+
 .hero-unit{
-	background-image: url(../img/layout/berlin-skyline-stripe.jpg);
+	background-image: url(../img/layout/immopoly-website-header.jpg);
 	background-position: center;
 	height: 350px;
 }

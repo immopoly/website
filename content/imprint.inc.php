@@ -4,7 +4,7 @@ Verantwortlicher Ansprechpartner für diese Webseite ist:
 <address>
 <em>Immopoly Team</em><br/>
 z.H. Yan Minagawa<br/>
-c/o  You Is Now Laby<br/>
+c/o  You Is Now Lab<br/>
 Andreasstr. 10<br/>
 10243 Berlin<br/>
 </address>
