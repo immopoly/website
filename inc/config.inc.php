@@ -6,7 +6,8 @@
 		"imagePath" => "img",
 		"contentPath" => "content",
 		"pagefileSuffix" => ".inc.php",
-		"newsFilePattern" => "^(\d){4}.*\.html$"
+		"newsFilePattern" => "^(\d){4}.*\.html$",
+		"newsMaxItems" => 10
 		);
 
 	//extra entry to use contentPath-config-var

@@ -118,11 +118,11 @@ function isPlain(){
 }
 
 // NEWS HANDLING
-
-function findNewsFiles($newerThan = 0){
+//find all news files, sort them descending and limit to config-value
+function findNewsFiles($newerThan = null){
 
 	if(empty($newerThan) || ! is_int( (int) $newerThan)){
-		$newerThan = 0;
+		$newerThan = getLastvisitId();
 	}
 
 	global $CONFIG;
@@ -133,7 +133,7 @@ function findNewsFiles($newerThan = 0){
 
 	$newsFiles = array();
 
-	while( $listfile = readdir($handle) ){
+	while( $listfile = readdir($handle)){
 
 		if($listfile == "." || $listfile == ".."){
 			continue;
@@ -145,10 +145,59 @@ function findNewsFiles($newerThan = 0){
 		}
 	}
 
-	$newsFiles = array_reverse($newsFiles,true);
-	//echo "<pre>".print_r($newsFiles,true)."</pre>";
+	$newsFiles = array_slice(array_reverse($newsFiles,true), 0, $CONFIG['newsMaxItems'],true);
 	
 	return $newsFiles;
 }
+
+//read the id of the last visit, if any
+function getLastvisitId(){
+	return empty($_GET['lastvisit']) ? 0 : (int) $_GET['lastvisit'];
+}
+
+//handles the redirection etc. before any content has been put out
+function handlePreDispatching($page=null){
+
+	if(empty($page)){
+		return;
+	}
+	
+	if(isPlain()){
+      the_page($page);    
+      exit;
+  	}
+	
+
+  	switch ($page) {
+  		case "news":
+
+  			$newsFiles = findNewsFiles();
+  			$ids = array_keys($newsFiles);
+  			$newestId = ( empty($ids[0])) ? 0 : $ids[0];
+
+  			if( ! empty($_GET['newest']) ){
+  				//it seems we already redirected
+  				return;
+  			}else if( $newestId <= getLastvisitId() ){
+  				//we have no new content
+  				header("HTTP/1.1 304 Not Modified");
+  				exit;
+  			}
+
+  			$redirect_url  = $_SERVER['REQUEST_URI'];
+  			$redirect_url .= ( strpos($redirect_url,"?")) ? "&" : "?";
+			$redirect_url .= "newest=".$newestId;
+
+  			// 303 See Other
+			header("Location: ".$redirect_url,TRUE,303);
+			exit;
+
+  			break;
+  		default:
+  			break;
+  	}
+
+}
+
 
 ?>

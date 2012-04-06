@@ -7,11 +7,7 @@
   require_once('inc/main.inc.php');  
 
   $page=validateStartParams();
-  
-  if(isPlain()){
-      the_page($page);    
-      exit;
-  }
+  handlePreDispatching($page);
 
 ?>
 <!DOCTYPE html>
